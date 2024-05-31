@@ -1,3 +1,6 @@
+import Button from "../Button";
+import JobtrackerButton from "./JobtrackerButton";
+
 interface Application {
     title: string;
     company: string;
@@ -8,7 +11,7 @@ interface Application {
     status: string;
 }
 
-const Table: React.FC = () => {
+const JobTable: React.FC = () => {
     const applications: Application[] = [
         { title: "Software Engineer", company: "ABC Inc.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", requirements: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", location: "New York, NY", date: "2024-05-30", status: "Pending" },
         { title: "Product Manager", company: "XYZ Corp.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", requirements: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", location: "San Francisco, CA", date: "2024-06-02", status: "Reviewed" },
@@ -19,21 +22,11 @@ const Table: React.FC = () => {
 
     return (
         <div>
-            <div className="text-zinc-900 grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-6">
-                <div className="flex flex-col items-start">
-                </div>
-                <div className="flex flex-col items-start p-5">
-                    <p>
-                        Test out own tracking app!
-                    </p>
-                </div>
-            </div>
-
-
             <div className="relative w-full max-w-screen-xl mx-auto flex flex-col min-w-0 break-words w-full shadow-lg rounded-xl mg-6 mt-4 border border-solid border-l-0 border-r-0">
                 <div className="flex flex-wrap items-center">
                     <div className="relative w-full px-4 max-w-full flex-grow flex">
                         <h3 className="font-extrabold text-zinc-900 text-lg p-4 m-2 text-center">Applications</h3>
+                       <JobtrackerButton/>
                     </div>
                 </div>
                 <div className="block bg-transparent m-4 p-10 w-full overflow-x-auto">
@@ -102,12 +95,4 @@ const getColorClass = (status: string): string => {
     }
 }
 
-export default Table;
-
-/*         
-        <div className="relative w-full max-w-screen-xl mx-auto flex flex-col min-w-0 break-words w-full shadow-lg rounded-xl mg-6 mt-4 border border-solid border-l-0 border-r-0">
-            <div className="flex flex-wrap items-center">
-                
-
-            </div>
-        </div> */
+export default JobTable;
