@@ -1,6 +1,10 @@
 import Link from "next/link";
+import LoginButton from "./LoginButton";
+
+
 
 const Header = () => {
+
     const links = [
         { name: "Home", link: "/home" },
         { name: "About", link: "/about" },
@@ -22,6 +26,7 @@ const Header = () => {
                         </a>
                     </li>
                 ))}
+                <LoginButton/>
             </ul>
         </div>
     );
@@ -34,3 +39,9 @@ export default Header;
 
 // Shadow top
 /*  <div className="shadow-md w-full fixed top-0 left-0"> */
+
+/*  <li className="md:ml-8 text-xl">
+                    <span onClick={LoginClick} className="text-lg font-normal text-zinc-900 cursor-pointer">
+                        Login
+                    </span>
+                </li> */

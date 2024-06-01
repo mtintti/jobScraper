@@ -28,6 +28,8 @@ import Header from './layout/Header';
 import Landing from './layout/Landing';
 import InfoGrid from './layout/InfoGrid';
 import Table from './layout/Jobdata';
+import LoginModal from './modals/LoginModal';
+import useLoginModal from "@/hooks/useLoginModal";
 
 interface LayoutProps {
   children: ReactNode;
@@ -35,13 +37,14 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     console.log("Rendering Layout component...");
-  return (
-    <div>
-        <Header />
+   // const loginModal = useLoginModal();
 
+    return (
+        <div>
+            <Header />
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default Layout;
