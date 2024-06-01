@@ -15,14 +15,28 @@ const JobModal = () => {
     const [date, setDate] = useState('');
     const [status, setStatus] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [isJob, setIsJob] = useState(true);
 
     const onToggle = useCallback(() => {
-        if(isLoading) {
+        if (isLoading) {
             return;
         }
         JobModal.onClose();
         JobModal.onOpen();
     }, [isLoading, JobModal, JobModal]);
+
+    const jobClick = (() => {
+        console.log("Job has been chosen");
+        setIsJob(true);
+    });
+
+    const internClick = (() => {
+        console.log("Internship has been chosen");
+        setIsJob(false);
+    });
+
+
+    
 
     const onSubmit = useCallback(async () => {
         try {
@@ -30,9 +44,9 @@ const JobModal = () => {
 
             // TODO ADD LOG IN
             JobModal.onClose();
-        } catch (error){
+        } catch (error) {
             console.log(error);
-        }finally{
+        } finally {
             setIsLoading(false)
         }
     }, [JobModal]);
@@ -40,56 +54,66 @@ const JobModal = () => {
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Input placeholder="Title"
-            onChange={(e) => setJobTitle(e.target.value)}
-            value={jobTitle}
-            disabled={isLoading}
+                onChange={(e) => setJobTitle(e.target.value)}
+                value={jobTitle}
+                disabled={isLoading}
             />
             <Input placeholder="Company"
-            onChange={(e) => setCompany(e.target.value)}
-            value={company}
-            disabled={isLoading}>
-           </Input>
-           <Input placeholder="Description *Optional"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            disabled={isLoading}>
-           </Input>
-           <Input placeholder="Requirements *Optional"
-            onChange={(e) => setRequirements(e.target.value)}
-            value={requirements}
-            disabled={isLoading}>
-           </Input>
-           <Input placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
-            value={location}
-            disabled={isLoading}>
-           </Input>
-           <Input placeholder="Date"
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
-            disabled={isLoading}>
-           </Input>
-           <Input placeholder="Status"
-            onChange={(e) => setStatus(e.target.value)}
-            value={status}
-            disabled={isLoading}>
-           </Input>
+                onChange={(e) => setCompany(e.target.value)}
+                value={company}
+                disabled={isLoading}>
+            </Input>
+            <Input placeholder="Description *Optional"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                disabled={isLoading}>
+            </Input>
+            <Input placeholder="Requirements *Optional"
+                onChange={(e) => setRequirements(e.target.value)}
+                value={requirements}
+                disabled={isLoading}>
+            </Input>
+            <Input placeholder="Location"
+                onChange={(e) => setLocation(e.target.value)}
+                value={location}
+                disabled={isLoading}>
+            </Input>
+            <Input placeholder="Date"
+                onChange={(e) => setDate(e.target.value)}
+                value={date}
+                disabled={isLoading}>
+            </Input>
+            <Input placeholder="Status"
+                onChange={(e) => setStatus(e.target.value)}
+                value={status}
+                disabled={isLoading}>
+            </Input>
+
+            <div className="text-neutral-400 text-center mt-4">
+                <p>Is this a:
+                    <span onClick={jobClick} className="text-white cursor-pointer hover:underline"> Job
+                    </span> or a
+                    <span onClick={internClick} className="text-white cursor-pointer hover:underline"> Internship?
+                    </span>
+                </p>
+
+            </div>
         </div>
     )
 
     const footerContent = (
         <div className="text-neutral-400 text-center mt-4">
             <p> Need to register?
-                <span  onClick={onToggle} className="text-white cursor-pointer hover:underline"
+                <span onClick={onToggle} className="text-white cursor-pointer hover:underline"
                 > Create an account
                 </span>
-            </p> 
+            </p>
         </div>
     )
-    
-    return(
+
+    return (
         <Modal disabled={isLoading} isOpen={JobModal.isOpen} title="Add Job" actionLabel="Add"
-         onClose={JobModal.onClose} onSubmit={onSubmit} body={bodyContent} footer={footerContent}/>
+            onClose={JobModal.onClose} onSubmit={onSubmit} body={bodyContent} footer={footerContent} />
     );
 }
 export default JobModal;
