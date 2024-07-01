@@ -23,6 +23,14 @@ model User {
   jobs      Job[]
   internships Internship[]
 }
+enum Status {
+  Rejected
+  Offer
+  Applied
+  Assessment
+  Interview
+}
+
 
 model Job {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -32,7 +40,7 @@ model Job {
   requirements  String?
   location      String
   postedDate    DateTime @default(now())
-  status        String
+  status        Status
   userId        String   @db.ObjectId
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -45,7 +53,7 @@ model Internship {
   requirementsI String?
   locationI     String
   postedDateI   DateTime @default(now())
-  statusI       String
+  status        Status
   userId        String   @db.ObjectId
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

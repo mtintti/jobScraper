@@ -25,31 +25,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 export default Layout;*/
 import React, { ReactNode } from 'react';
 import Header from './layout/Header';
-import Landing from './layout/Landing';
-import InfoGrid from './layout/InfoGrid';
-import Table from './layout/Jobdata';
-import LoginModal from './modals/LoginModal';
-import useLoginModal from "@/hooks/useLoginModal";
+
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = () => {
     console.log("Rendering Layout component...");
-   // const loginModal = useLoginModal();
 
     return (
         <div>
             <Header />
-
         </div>
     );
 }
 
 export default Layout;
-
-      /*{children}*/
-/*       <Landing/>
-      <InfoGrid/>
-      <Table/> */

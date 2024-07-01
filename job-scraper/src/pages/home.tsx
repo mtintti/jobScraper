@@ -17,11 +17,12 @@ const LandingPage = () => {
     );
 }
 export default LandingPage;*/
-import React from 'react';
+
 import Landing from '@/components/layout/Landing';
 import InfoGrid from '@/components/layout/InfoGrid';
-import Table from '@/components/layout/Jobdata';
+//import Table from '@/components/layout/Jobdata';
 import Header from "@/components/layout/Header";
+import Board from '@/components/layout/Board';
 
 const Home = () => {
     console.log("Rendering Home component...");
@@ -30,9 +31,10 @@ const Home = () => {
     <Header/>
       <Landing />
       <InfoGrid />
-      <Table />
     </div>
   );
 }
 
 export default Home;
+
+/* <Table /> */
