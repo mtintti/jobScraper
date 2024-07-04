@@ -16,6 +16,10 @@ export default async function handler(
 
   try {
     const { currentUser } = await serverAuth(req);
+    if(currentUser && 'role' in currentUser) {
+      console.log("is guest?, "+ currentUser.role);
+      return res.status(200).json({ role: 'guest' });
+    }
     return res.status(200).json(currentUser);
 
   } catch (error) {
