@@ -83,13 +83,10 @@ export const getJobsGroupedByStatus = async (): Promise<Board> => {
 */
 
 
-
-// new
-
 // getJobsGroupedByStatus.ts
 
 import prisma from '@/libs/prismadb';
-import { Status } from '@prisma/client';  // Importing Status from Prisma
+import { Status } from '@prisma/client'; 
 
 interface Post {
   id: string;
@@ -99,26 +96,35 @@ interface Post {
   requirements: string | null;
   location: string;
   postedDate: Date;
-  status: Status;  // Using Prisma's Status
+  status: Status; 
   userId: string;
 }
 
 interface Column {
-  id: Status;  // Using Prisma's Status
+  id: Status; 
   posts: Post[];
 }
 
 interface Board {
-  columns: Array<[Status, Column]>;  // Using Prisma's Status
+  columns: Array<[Status, Column]>;  
 }
 
-export const getJobsGroupedByStatus = async (): Promise<Board> => {
-  const jobs = await prisma.job.findMany();
-  const internships = await prisma.internship.findMany();
+export const getJobsGroupedByStatus = async (userId: string): Promise<Board> => {
+ 
+  const jobs = await prisma.job.findMany({
+    where: {
+      userId: userId 
+    }
+  });
+
+  const internships = await prisma.internship.findMany({
+    where: {
+      userId: userId
+    }
+  });
 
   const columns = new Map<Status, Column>();
 
-  
 
   jobs.forEach(job => {
     const jobPost: Post = {
@@ -195,12 +201,6 @@ export const getJobsGroupedByStatus = async (): Promise<Board> => {
     )
   );
 
- /* const board: Board = {
-    columns: sortedColumns
-  };*/
-  //console.log('Fetched board data for lib API:', board);
-
-  //return board;
   return {
     columns: Array.from(sortedColumns.entries())
   };
