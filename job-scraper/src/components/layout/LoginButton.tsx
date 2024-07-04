@@ -15,7 +15,7 @@ const LoginButton = () => {
 
     const onClick = useCallback(async () => {
 
-        if (currentUser && ('role' in currentUser)) {
+        if (currentUser && currentUser.id === '6686b07cdfa48c7c64bd2dc2') {
             console.log("Login clicked");
             LoginModal.onOpen();
             console.log("The signed in user is:", currentUser);
@@ -35,7 +35,7 @@ const LoginButton = () => {
         <div onClick={onClick} >
             <div className='text-lg font-normal text-zinc-900'>
                 <p>
-                    {currentUser && ('role' in currentUser) ? 'Login' : 'Logout'}
+                    {currentUser && (currentUser.id === '6686b07cdfa48c7c64bd2dc2') ? 'Login' : 'Logout'}
                 </p>
             </div>
         </div>
