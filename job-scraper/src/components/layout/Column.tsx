@@ -91,16 +91,6 @@ type Props = {
     posts: Post[],
     index: number
 };
-/*
-const idToColumnText: {
-    [key in Status]: string;
-} = {
-    "Rejected": "Rejected",
-    "Applied": "Applied",
-    "Assessment": "Assessment",
-    "Interview": "Interview",
-    "Offer": "Offer",
-};*/
 
 
 const idToColumnText: Record<Status, string> = {
@@ -113,12 +103,7 @@ const idToColumnText: Record<Status, string> = {
 
 function Column({ id, posts, index }: Props) {
 
-    /* useEffect(() => {
-         console.log('Column props:', { id, posts, index });
-     }, [id, posts, index]);
- 
-     console.log(`Posts in column ${id}:`, posts);*/
-    //console.log(`Rendering Column ${id}`);
+
 
     const JobModal = useJobModal();
     const onClick = useCallback(() => {
