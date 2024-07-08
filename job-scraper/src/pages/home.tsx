@@ -23,6 +23,7 @@ import InfoGrid from '@/components/layout/InfoGrid';
 //import Table from '@/components/layout/Jobdata';
 import Header from "@/components/layout/Header";
 import Board from '@/components/layout/Board';
+import Footer from '@/components/footer';
 
 const Home = () => {
     console.log("Rendering Home component...");
@@ -31,6 +32,7 @@ const Home = () => {
     <Header/>
       <Landing />
       <InfoGrid />
+      <Footer/>
     </div>
   );
 }
