@@ -3,6 +3,7 @@ import UserHome from "@/components/userHome";
 import UserHero from "./users/userHero";
 import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
+import Footer from "@/components/footer";
 
 const profile = () => {
     const router = useRouter();
@@ -15,6 +16,7 @@ const profile = () => {
             <Header />
             <UserHome showBackArrow label="User Profile"  />
             <UserHero userId={userId} />
+            <Footer/>
         </>
     );
 }
