@@ -40,7 +40,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     if (jobExists) {
       const updatedJob = await prisma.job.update({
         where: { id },
-        data: { status },
+        data: { status, postedDate: new Date()},
+        
       });
       res.status(200).json(updatedJob);
       return;
@@ -51,7 +52,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     if (internshipExists) {
       const updatedInternship = await prisma.internship.update({
         where: { id },
-        data: { status },
+        data: { status, postedDateI: new Date() },
       });
       res.status(200).json(updatedInternship);
       return;

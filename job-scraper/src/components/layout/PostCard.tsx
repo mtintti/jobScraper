@@ -4,6 +4,8 @@ import {
     DraggableProvidedDraggableProps
 } from "react-beautiful-dnd";
 import { getTime } from "@/utils/date";
+import { useBoardStore } from "@/store/BoardStore";
+import toast from "react-hot-toast";
 
 
 type Props = {
@@ -13,6 +15,7 @@ type Props = {
     innerRef: (element: HTMLElement | null) => void;
     draggableProps: DraggableProvidedDraggableProps;
     dragHandleProps: DraggableProvidedDragHandleProps | null | undefined;
+    
 }
 
 function PostCard({
@@ -24,6 +27,17 @@ function PostCard({
     dragHandleProps
 }: Props) {
     const dateFormated = getTime(new Date(posts.postedDate));
+    
+
+
+    const { deletePostInDB } = useBoardStore();
+    
+    const handleDeletePost = async () => {
+        if (deletePostInDB){
+          deletePostInDB(posts, id);
+          toast.success("Post deleted!");
+        }
+      };
     
     return (
         <div
@@ -40,7 +54,7 @@ function PostCard({
                 <p className="text-ellipsis overflow-hidden ... ">
                     <p>{dateFormated}</p>
                 </p>
-                <button className="text-red-500 hover:text-red-600">
+                <button  onClick={handleDeletePost} className="text-red-500 hover:text-red-600">
                     <div className="ml-5 h-8 w-8">close</div>
                 </button>
             </div>
