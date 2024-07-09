@@ -82,7 +82,6 @@ export default Column;
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import PostCard from "./PostCard";
 import { Status } from "@prisma/client";
-import { useEffect } from "react";
 import useJobModal from "@/hooks/useJobModal"; 
 import { useCallback } from "react";
 
@@ -90,6 +89,7 @@ type Props = {
     id: Status,
     posts: Post[],
     index: number
+    
 };
 
 
@@ -144,12 +144,13 @@ function Column({ id, posts, index }: Props) {
                                         >
                                             {(provided) => (
                                                 <PostCard
-                                                    posts={post} // Correct the prop name here if it's 'post' in PostCard component
+                                                    posts={post}
                                                     index={index}
                                                     id={id}
                                                     innerRef={provided.innerRef}
                                                     draggableProps={provided.draggableProps}
                                                     dragHandleProps={provided.dragHandleProps}
+                                                   
 
                                                 />
                                             )}

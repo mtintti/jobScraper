@@ -22,7 +22,6 @@ interface Posts{
    
 // new
 interface Board {
-  //columns: Map<TypedColumn, Column>;
   columns: Map<Status, Column>;
 }
 
@@ -33,20 +32,18 @@ interface Post {
   title: string;
   company: string;
   status: Status;
-  description?: string | null;
-  requirements?: string | null;
+  description: string | null;
+  requirements: string | null;
   location: string;
   postedDate: Date;
+  updatedDate: Date;
   userId: string;
 }
 
 interface Column {
-  //id: TypedColumn;
   id: Status;
   posts: Post[];
 }
-
-// and for jobModal
 
  interface User {
   id: string;
@@ -66,18 +63,9 @@ interface Column {
   requirements?: string;
   location: string;
   postedDate: Date;
-  //status: JobStatus;
   status: Status;
   userId: string;
 }
-/*
- enum JobStatus {
-  Rejected = "Rejected",
-  Offer = "Offer",
-  Applied = "Applied",
-  Assessment = "Assessment",
-  Interview = "Interview",
-}*/
 
  interface Internship {
   id: string;
@@ -87,18 +75,9 @@ interface Column {
   requirementsI?: string;
   locationI: string;
   postedDateI: Date;
-  //statusI: InternshipStatus;
   status: Status;
   userId: string;
 }
-/*
- enum InternshipStatus {
-  Rejected = "Rejected",
-  Offer = "Offer",
-  Applied = "Applied",
-  Assessment = "Assessment",
-  Interview = "Interview",
-}*/
 
 enum Status {
   Rejected = "Rejected",

@@ -125,15 +125,12 @@ type Props = {
 
 function Board() {
     console.log("Rendering Board component"); 
-    // updateJobInDB, updateInternshipInDB
-    const { board, getBoard, setBoardState, updatePostsInDB } = useBoardStore(
+    const { board, getBoard, setBoardState, updatePostsInDB} = useBoardStore(
         (state) => ({
             board: state.board,
             getBoard: state.getBoard,
             setBoardState: state.setBoardState,
-            //updateJobInDB: state.updateJobInDB,
-            //updateInternshipInDB: state.updateInternshipInDB,
-            updatePostsInDB: state.updatePostsInDB,
+            updatePostsInDB: state.updatePostsInDB,  
             
         })
     );
@@ -142,15 +139,6 @@ function Board() {
         getBoard();
     }, [getBoard]);
 
-    /*
-    // Debug board state
-    useEffect(() => {
-        if (board) {
-            console.log('board.columns:', board.columns);
-            console.log('board.columns is Map:', board.columns instanceof Map);
-        }
-    }, [board]);
-*/
 
     const handleOnDragEnd = async (result: DropResult) => {
         const { destination, source, type } = result;
@@ -172,25 +160,13 @@ function Board() {
 
         const columns = Array.from(board.columns);
         console.log('columns:', columns);
-        //const startColIndex = columns[(source.droppableId)];
         const startColIndex = columns.findIndex(([id]) => id === source.droppableId);
         console.log('startColIndex:', startColIndex);
-        //const finishColIndex = columns[(destination.droppableId)];
         const finishColIndex = columns.findIndex(([id]) => id === destination.droppableId);
         console.log('source.droppableId:', source.droppableId);
         console.log('destination.droppableId:', destination.droppableId);
 
-        /*
-        const startCol = {
-            id: startColIndex[0],
-            posts: startColIndex[1].posts,
-        };
-
-        const finishCol = {
-            id: finishColIndex[0],
-            posts: finishColIndex[1].posts,
-        };*/
-        // Define the start and finish columns with their respective posts
+      
         const startCol = {
             id: columns[startColIndex][0], 
             posts: columns[startColIndex][1].posts,
@@ -208,6 +184,7 @@ function Board() {
         const newPosts = Array.from(startCol.posts);
         const [postMoved] = newPosts.splice(source.index, 1);
 
+        // new after the posts: newPost, 
         if (startCol.id === finishCol.id) {
             newPosts.splice(destination.index, 0, postMoved);
             const newCol = {
@@ -236,20 +213,9 @@ function Board() {
             newColumns.set(finishCol.id, newFinishCol);
             
             try {
-                /*
-                // Update in DB
-                if ('jobTitle' in postMoved) {
-                    console.log(" Post has jobTitle...")
-                    console.log("Sending Job posting to updated database...")
-                    await updateJobInDB(postMoved as Job, finishCol.id);
-                    console.log(" Job posting updated to database...")
-                } else if ('titleI' in postMoved && 'companyI' in postMoved && 'locationI' in postMoved && 'postedDateI' in postMoved && 'statusI' in postMoved) {
-                    console.log(" Post has titleI...")
-                    await updateInternshipInDB(postMoved as Internship, finishCol.id);
-                    console.log("Sending Intern posting to updated database...")
-                }*/
                 await updatePostsInDB(postMoved, finishCol.id);
                 console.log("Sending posting to updated database...")
+                
             } catch (error) {
                 console.error('Error updating database:', error);
             }
@@ -266,12 +232,11 @@ function Board() {
                 {(provided) => (
                     <div
                         className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto "
-                        //className="flex space-x-10 overflow-x-auto gap-10 max-w-7xl mx-auto "
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                     >
                         {Array.from(board.columns.entries()).map(([id, column], index) => (
-                            <Column key={id} id={id} posts={column.posts as Post[]} index={index} />
+                            <Column key={id} id={id} posts={column.posts as Post[]} index={index}/>
                         ))}
                     </div>
                 )}
