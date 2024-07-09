@@ -20,7 +20,7 @@ const UserHome: React.FC<UserHomeProps> = ({ label, showBackArrow }) => {
                 {showBackArrow && (
                     <BiArrowBack
                         onClick={handleBack}
-                        color="white"
+                        color="black"
                         size={28}
                         className="cursor-pointer hover:opacity-70 transition"
                     />
