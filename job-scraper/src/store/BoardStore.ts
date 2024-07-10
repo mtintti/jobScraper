@@ -1,40 +1,3 @@
-//old code from tutorial
-/*import { getPostsGroupedByColumn } from '@/libs/getPostsGroupedByColumn';
-import { create } from 'zustand'
-
-interface BoardState {
-    board: Board;
-    getBoard: () => void;
-    setBoardState: (board: Board) => void;
-    updatePostsInDB: (post: Posts, columnId:TypedColumn) => void;
-}
-
-export const useBoardStore = create((set) => ({
- board: {
-    colums: new Map<TypedColumn, Column>()
- },
- getBoard: async() => {
-    const Board = await getPostsGroupedByColumn();
-    set {{ board }};
-
- },
- setBoardState: (board) => set({ board }),
-
- updatePostInDB:async (post, columnId) => {
-   await databases.updateDocument(
-      process.env.NEXT_PUBLIC_DATABSE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      posts.$id,
-      {
-         title: post.title,
-         status: columnId,
-      }
-   );
- }
-}))
- */
-
-// current
 
 import { create } from 'zustand';
 import { Status } from '@prisma/client';
@@ -78,20 +41,16 @@ export const useBoardStore = create<BoardState>((set) => ({
 
   getBoard: async () => {
     try {
-      console.log('Fetching board data...');
       const response = await fetch('/api/jobs/getJobsGroupedByStatus');
       const boardData = await response.json();
   
       const columnsMap = new Map<Status, Column>();
-      
-  
      
-      // Check if boardData.columns exists and is an array
+      // Tarkistetaan että boardData.columns on olemassa.
         if (boardData.columns) {
-        // Iterate over each [key, column] tuple in the boardData.columns array
+        // Iteratetaan jokaisen [key, column] tuplen läpi boardData.column Arrayssä
           boardData.columns.forEach(([key, column] : [Status, Column]) => {
-          console.log("Processing column:", key);
-          // Add the key and corresponding column data to the columnsMap
+          // ja lisätään key ja column data columnsMap:iin.
           columnsMap.set(key, {
             id: key,
             posts: column.posts,
@@ -108,7 +67,6 @@ export const useBoardStore = create<BoardState>((set) => ({
           columns: columnsMap,
         },
       }));
-      console.log('Board state updated with columns:', columnsMap);
     } catch (error) {
       console.error('Error fetching board data:', error);
     }

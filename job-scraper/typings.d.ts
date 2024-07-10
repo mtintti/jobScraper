@@ -1,26 +1,4 @@
-// old code from tutorial
-/*interface Board {
-    columns: Map<TypedColumn, Column>;
-}
 
-type TypedColumn = "Rejected" | "Applied" | "Assessment" | "Interview" | "Offer";
-
-interface Column{
-    id:TypedColumn;
-    posts: Posts[];
-}
-
-interface Posts{
-    $id: string;
-    $createdAt: string;
-    title: string;
-    status: TypedColumn;
-    company: string;
-
-}*/
-    
-   
-// new
 interface Board {
   columns: Map<Status, Column>;
 }
