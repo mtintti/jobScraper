@@ -1,10 +1,10 @@
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import toast from "react-hot-toast";
 import useJobModal from "@/hooks/useJobModal";
-
+import { useJobStore } from "@/store/JobStore";
 
 type JobModalProps = {
   currentUser: User;
@@ -12,6 +12,7 @@ type JobModalProps = {
 
 const JobModal: React.FC<JobModalProps> = ({ currentUser }) => {
   const jobModal = useJobModal();
+  const jobData = useJobStore((state) => state.jobData);
 
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
@@ -39,11 +40,22 @@ const JobModal: React.FC<JobModalProps> = ({ currentUser }) => {
     setIsJob(false);
   };
 
+  // Jos jobModal on saanut JobDatan,
+  // laitetaan data oikeisiin kohtiin.
+  useEffect(() => {
+    if (jobData) {
+      setJobTitle(jobData.title);
+      setCompany(jobData.company);
+      setLocation(jobData.location);
+    }
+  }, [jobData]);
+  
+
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
 
-  const apiEndpoint = isJob ? '/api/jobs/add' : '/api/jobs/addInternship'; // Determine endpoint based on isJob flag
+  const apiEndpoint = isJob ? '/api/jobs/add' : '/api/jobs/addInternship';
 
   const response = await fetch(apiEndpoint, {
     method: 'POST',
