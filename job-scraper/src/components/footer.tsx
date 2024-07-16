@@ -15,7 +15,7 @@ const Footer = () => {
                 <div>
                     <h1 className="w-full text-3xl font-bold">Job Tracker.</h1>
                     <p className="py-4">
-                        Whether you're applying for internships or full-time positions, Job Tracker provides you with the tools you need to stay on top of your job search. All your job hunting essentials, conveniently in one place.
+                        Whether you are applying for internships or full-time position&comma; Job Tracker provides you with the tools you need to stay on top of your job search. All your job hunting essentials&comma; conveniently in one place.
                     </p>
                     <div className="flex justify-between md:w-[75%] my-6">
                         <FaFacebookSquare size={30} />
