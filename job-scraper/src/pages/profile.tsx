@@ -1,14 +1,12 @@
 import Header from "@/components/layout/Header";
 import UserHome from "@/components/userHome";
 import UserHero from "./users/userHero";
-import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import ChartComponent1 from "@/components/charts/BarChart";
 import SuccessRatePieChart from "@/components/charts/PieSuccessChart";
 
 
-const profile = () => {
-    const router = useRouter();
+const Profile = () => {
 
     return (
         <>
@@ -34,4 +32,4 @@ const profile = () => {
         </>
     );
 }
-export default profile;
+export default Profile;

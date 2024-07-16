@@ -10,7 +10,7 @@ const About = () => {
                     About
                 </div>
                 <div className="col-start-1 row-start-2 max-w-xl text-start text-zinc-900 md:text-left md:text-lg md:leading-6 md:tracking-normal">
-                    JobTracker is an innovative and comprehensive job tracking application designed to simplify your job search process. Our app provides an intuitive platform where users can seamlessly organize and manage their job applications all in one place. Whether you're a fresh graduate or an experienced professional JobTracker offers the tools you need to stay on top of your job hunt.
+                    JobTracker is an innovative and comprehensive job tracking application designed to simplify your job search process. Our app provides an intuitive platform where users can seamlessly organize and manage their job applications all in one place. Whether you are a fresh graduate or an experienced professional JobTracker offers the tools you need to stay on top of your job hunt.
 
                 </div>
                 <div className="col-start-1 row-start-3 max-w-xl text-start text-zinc-900 md:text-left md:text-lg md:leading-6 md:tracking-normal">
