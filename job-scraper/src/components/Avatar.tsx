@@ -1,6 +1,3 @@
-
-import { useCallback } from "react";
-import router from "next/router";
 import Image from "next/image";
 
 

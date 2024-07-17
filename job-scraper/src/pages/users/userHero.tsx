@@ -1,6 +1,6 @@
 import Avatar from "@/components/Avatar"; 
 
-interface UserHeroProps {
+interface UserHeroProps {    
 }
 
 const UserHero: React.FC<UserHeroProps> = () => {

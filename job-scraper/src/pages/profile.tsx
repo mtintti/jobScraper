@@ -7,7 +7,7 @@ import SuccessRatePieChart from "@/components/charts/PieSuccessChart";
 
 
 const Profile = () => {
-
+    
     return (
         <>
             <Header />
