@@ -1,16 +1,18 @@
-import UserHome from "@/components/userHome";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import Landing from '@/components/layout/Landing';
+import InfoGrid from '@/components/layout/InfoGrid';
+import Header from "@/components/layout/Header";
+import Footer from '@/components/footer';
 
-export default function Home() {
+const Index = () => {
   return (
-    <>
-      <div className="text-3xl text-sky-500">
-        Hello!
-      </div>
-      <UserHome label="Home" showBackArrow={false} />
-    </>
-
+    <div className="bg-white-600 w-full h-screen">
+    <Header/>
+      <Landing />
+      <InfoGrid />
+      <Footer/>
+    </div>
   );
 }
+
+export default Index;
