@@ -5,7 +5,7 @@ const LogoButton = () => {
     const [showSvg, setSvg] = useState(false);
 
     return (
-        <Link href={"http://localhost:3000/home"}>
+        <Link href="/">
         <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-1">
             <div className="grid grid-cols-2 gap-5">
                 {/* Wind SVG */}

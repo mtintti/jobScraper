@@ -1,22 +1,16 @@
-
-import useUser from "@/hooks/useUser";
-import { useCallback } from "react";
-import router from "next/router";
 import Image from "next/image";
 
 
 
 interface AvatarProps {
-    userId: string,
     isLarge?: boolean,
     hasBorder?: boolean;
 }
 const Avatar: React.FC<AvatarProps> = ({
-    userId,
     isLarge,
     hasBorder
 }) => {
-    const { data: fetchedUser } = useUser(userId);
+    
     return (
         <div
             className={`
@@ -37,7 +31,7 @@ const Avatar: React.FC<AvatarProps> = ({
                     borderRadius: '100%'
                 }}
                 alt="Avatar"
-                src={fetchedUser?.profileImage || '/images/placeholder.png'} />
+                src={'/images/placeholder.png'} />
 
 
         </div>

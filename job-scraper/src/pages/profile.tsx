@@ -1,24 +1,18 @@
 import Header from "@/components/layout/Header";
 import UserHome from "@/components/userHome";
 import UserHero from "./users/userHero";
-import useUser from "@/hooks/useUser";
-import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import ChartComponent1 from "@/components/charts/BarChart";
 import SuccessRatePieChart from "@/components/charts/PieSuccessChart";
 
 
-const profile = () => {
-    const router = useRouter();
-    const { userId } = router.query as { userId: string };
-
-    const { data: fetchedUser, isLoading} = useUser(userId);
-    console.log("The users user id is this: ", userId);
+const Profile = () => {
+    
     return (
         <>
             <Header />
             <UserHome showBackArrow label="User Profile" />
-            <UserHero userId={userId} />
+            <UserHero/>
 
             <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 text-black-300">
                 <div className="col-start-1 row-start-3 max-w-[10rem] font-bold tracking-tight text-zinc-900 md:text-left md:text-[4.5rem] md:leading-[4.5rem] lg:text-8xl xl:max-w-[10rem] xl:text-5xl">
@@ -38,4 +32,4 @@ const profile = () => {
         </>
     );
 }
-export default profile;
+export default Profile;

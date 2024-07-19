@@ -28,7 +28,7 @@ const Userview = () => {
         <>
             <Header/>
             <UserHome showBackArrow label="User Profile" />
-            <UserHero userId={userId} />
+            <UserHero />
         </>
     );
 }
