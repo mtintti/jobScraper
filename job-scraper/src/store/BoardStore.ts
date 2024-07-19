@@ -42,8 +42,12 @@ export const useBoardStore = create<BoardState>((set) => ({
   getBoard: async () => {
     try {
       const response = await fetch('/api/jobs/getJobsGroupedByStatus');
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const boardData = await response.json();
-  
       const columnsMap = new Map<Status, Column>();
      
       // Tarkistetaan että boardData.columns on olemassa.
