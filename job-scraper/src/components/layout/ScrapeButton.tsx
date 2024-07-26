@@ -1,4 +1,5 @@
 import { useJobStore } from "@/store/JobStore";
+import toast from "react-hot-toast";
 
 type ScrapeButtonProps = {
     input: string;
@@ -16,10 +17,12 @@ function ScrapeButton({ input }: ScrapeButtonProps) {
             })
             if (!res.ok) {
                 throw new Error(`HTTP error! Status: ${res.status}`);
+                toast.error('Failed to submit');
             }
             const data = await res.json();
             // tallennetaan data JobStoreen
             setJobData(data);
+            toast.success("Job submitted!");
         } catch (error) {
             console.error('Error fetching data:', error);
         }

@@ -2,6 +2,7 @@
 import { useBoardStore } from "@/store/BoardStore";
 import { useEffect } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import { getTime } from "@/utils/date";
 import Column from "./Column";
 import { Status } from "@prisma/client";
 
@@ -67,6 +68,8 @@ function Board() {
         const newPosts = Array.from(startCol.posts);
         const [postMoved] = newPosts.splice(source.index, 1);
 
+        const updatedPost = {...postMoved, postedDate: new Date()};
+
         // Jos postaus on siirretty samassa columnissa, päivitettään uusi postaus järjestely.
         if (startCol.id === finishCol.id) {
             newPosts.splice(destination.index, 0, postMoved);
@@ -82,7 +85,7 @@ function Board() {
             // ja päivitetään Postin status tietokantaan.
         } else {
             const finishPosts = Array.from(finishCol.posts);
-            finishPosts.splice(destination.index, 0, postMoved);
+            finishPosts.splice(destination.index, 0, updatedPost);
 
             const newStartCol = {
                 id: startCol.id,

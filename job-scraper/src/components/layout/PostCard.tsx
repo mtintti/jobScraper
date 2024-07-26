@@ -20,13 +20,14 @@ type Props = {
 
 function PostCard({
     posts,
-    index,
     id,
     innerRef,
     draggableProps,
     dragHandleProps
 }: Props) {
     const dateFormated = getTime(new Date(posts.postedDate));
+    const getBoard = useBoardStore((state) => state.getBoard);
+
     
 
 
@@ -35,6 +36,7 @@ function PostCard({
     const handleDeletePost = async () => {
         if (deletePostInDB){
           deletePostInDB(posts, id);
+          getBoard();
           toast.success("Post deleted!");
         }
       };
